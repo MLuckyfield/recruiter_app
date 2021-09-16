@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :jobs
+  resources :companies
   root 'candidates#index'
   resources :experiences
   resources :candidates
