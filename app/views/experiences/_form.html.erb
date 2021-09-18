@@ -1,27 +1,31 @@
-<%= form_with(model: experience) do |form| %>
-  <% if experience.errors.any? %>
+<%= form_for @candidate do |form| %>
+  <% if candidate.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(experience.errors.count, "error") %> prohibited this experience from being saved:</h2>
+      <h2><%= pluralize(candidate.errors.count, "error") %> prohibited this candidate from being saved:</h2>
 
       <ul>
-        <% experience.errors.each do |error| %>
+        <% candidate.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :firm %>
-    <%= form.text_field :firm %>
-  </div>
 
-  <div class="field">
-    <%= form.label :tasks %>
-    <%= form.text_field :tasks %>
-  </div>
+
+  <%= form.fields_for :experiences, [@candidate.experiences.build] do |experiences_form| %>
+    <div class="field">
+      <%= experiences_form.label :firm %>
+      <%= experiences_form.text_field :firm %>
+    </div>
+
+    <div class="field">
+      <%= experiences_form.label :tasks %>
+      <%= experiences_form.text_field :tasks %>
+    </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+  <% end %>

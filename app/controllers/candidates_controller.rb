@@ -8,11 +8,13 @@ class CandidatesController < ApplicationController
 
   # GET /candidates/1 or /candidates/1.json
   def show
+    @experiences = Experience.where(candidate_id:params[:id])
   end
 
   # GET /candidates/new
   def new
     @candidate = Candidate.new
+    @candidate.experiences.build
   end
 
   # GET /candidates/1/edit
@@ -64,6 +66,6 @@ class CandidatesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def candidate_params
-      params.require(:candidate).permit(:first_name, :last_name, :age)
+      params.require(:candidate).permit(:first_name, :last_name, :age, experiences_attributes: [:id, :firm, :tasks])
     end
 end

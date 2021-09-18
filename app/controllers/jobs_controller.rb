@@ -13,6 +13,7 @@ class JobsController < ApplicationController
   # GET /jobs/new
   def new
     @job = Job.new
+    @company = Company.find(params[:company])
   end
 
   # GET /jobs/1/edit
@@ -22,6 +23,7 @@ class JobsController < ApplicationController
   # POST /jobs or /jobs.json
   def create
     @job = Job.new(job_params)
+
 
     respond_to do |format|
       if @job.save

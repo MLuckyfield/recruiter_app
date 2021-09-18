@@ -11,6 +11,9 @@
   </head>
 
   <body>
+    <%=button_to 'All Companies', companies_path, method: :get%>
+    <%=button_to 'All Jobs', jobs_path, method: :get%>
+    <%=button_to 'All Candidates', candidates_path, method: :get%>
     <%= yield %>
   </body>
 </html>

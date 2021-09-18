@@ -3,7 +3,27 @@
 <p>
   <strong>Name:</strong>
   <%= @company.name %>
-</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>ID</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+    <tbody>
+      <% @jobs.each do |job| %>
+        <tr>
+          <td><%= job.id %></td>
+          <td><%= job.name %></td>
+          <td><%= link_to 'Show', job %></td>
+          <td><%= link_to 'Edit', edit_job_path(job) %></td>
+          <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to 'New Job', new_job_path(:company => @company.id) %>
+</p>

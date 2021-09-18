@@ -8,11 +8,13 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1 or /companies/1.json
   def show
+    @jobs = Job.where(company_id:params[:id])
   end
 
   # GET /companies/new
   def new
     @company = Company.new
+    @company.jobs.build
   end
 
   # GET /companies/1/edit
@@ -64,6 +66,6 @@ class CompaniesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def company_params
-      params.require(:company).permit(:name)
+      params.require(:company).permit(:name, jobs_attributes: [:id, :name, :contents])
     end
 end

@@ -13,6 +13,7 @@ class ExperiencesController < ApplicationController
   # GET /experiences/new
   def new
     @experience = Experience.new
+    @candidate = Candidate.find(params[:candidate])
   end
 
   # GET /experiences/1/edit

@@ -15,5 +15,28 @@
   <%= @candidate.age %>
 </p>
 
+<table>
+  <thead>
+    <tr>
+      <th>Firm</th>
+      <th>Tasks</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @experiences.each do |experience| %>
+      <tr>
+        <td><%= experience.firm %></td>
+        <td><%= experience.tasks %></td>
+        <td><%= link_to 'Show', experience %></td>
+        <td><%= link_to 'Edit', edit_experience_path(experience) %></td>
+        <td><%= link_to 'Destroy', experience, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <%= link_to 'Edit', edit_candidate_path(@candidate) %> |
+<%= link_to 'New Experience', new_experience_path(:candidate => @candidate.id)  %>
 <%= link_to 'Back', candidates_path %>

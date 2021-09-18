@@ -1,25 +1,28 @@
-<%= form_with(model: job) do |form| %>
-  <% if job.errors.any? %>
+Creating Job for <%=@company.name%>
+<%= form_for @company do |form| %>
+  <% if company.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(job.errors.count, "error") %> prohibited this job from being saved:</h2>
+      <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
 
       <ul>
-        <% job.errors.each do |error| %>
+        <% company.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <%= form.fields_for :jobs, [@company.jobs.build] do |job_form| %>
+    <div class="field">
+      <%= job_form.label :name %>
+      <%= job_form.text_field :name %>
+    </div>
+    <div class="field">
+      <%= job_form.label :contents %>
+      <%= job_form.text_field :contents %>
+    </div>
+  <% end %>
 
-  <div class="field">
-    <%= form.label :contents %>
-    <%= form.text_field :contents %>
-  </div>
 
   <div class="actions">
     <%= form.submit %>

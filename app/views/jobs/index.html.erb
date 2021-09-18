@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Company ID</th>
       <th>Name</th>
       <th>Contents</th>
       <th colspan="3"></th>
@@ -14,6 +15,7 @@
   <tbody>
     <% @jobs.each do |job| %>
       <tr>
+        <td><%= job.company_id %></td>
         <td><%= job.name %></td>
         <td><%= job.contents %></td>
         <td><%= link_to 'Show', job %></td>
